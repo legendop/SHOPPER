@@ -1,0 +1,56 @@
+"""
+URL configuration for Shopper project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django import views
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import about, adminLogin, contact, main,add_category, add_product, addToCart, booking, cart, change_order_status, change_password, delete_category, delete_feedback, delete_product, deletecart, edit_category, edit_product, home, incredecre, logoutuser, manage_feedback, myOrder, payment, product_detail, profile, registration, user_feedback, user_order_track, user_product, userlogin, view_category, view_product
+
+urlpatterns = [
+    path('add-category/', add_category, name="add_category"),
+    path('admin_login/', adminLogin, name="admin_login"),
+    path('view-category/', view_category, name="view_category"),
+    path('edit-category/<int:pid>/', edit_category, name="edit_category"),
+    path('delete-category/<int:pid>/', delete_category, name="delete_category"),
+    path('add-product/', add_product, name='add_product'),
+    path('view-product/', view_product, name='view_product'),
+    path('edit-product/<int:pid>/', edit_product, name="edit_product"),
+    path('delete-product/<int:pid>/', delete_product, name="delete_product"),
+    path('registration/', registration, name="registration"),
+    path('userlogin/', userlogin, name="userlogin"),
+    path('profile/', profile, name="profile"),
+    path('logout/', logoutuser, name="logout"),
+    path('change-password/', change_password, name="change_password"),
+    path('user-product/<int:pid>/', user_product, name="user_product"),
+    path('product-detail/<int:pid>/', product_detail, name="product_detail"),
+    path('add-to-cart/<int:pid>/', addToCart, name="addToCart"),
+    path('cart/', cart, name="cart"),
+    path('incredecre/<int:pid>/', incredecre, name="incredecre"),
+    path('deletecart/<int:pid>/', deletecart, name="deletecart"),
+    path('booking/', booking, name="booking"),
+    path('my-order/', myOrder, name="myorder"),
+    path('user-order-track/<int:pid>/', user_order_track, name="user_order_track"),
+    path('change-order-status/<int:pid>/', change_order_status, name="change_order_status"),
+    path('user-feedback/', user_feedback, name="user_feedback"),
+    path('manage-feedback/', manage_feedback, name="manage_feedback"),
+    path('delete-feedback/<int:pid>/', delete_feedback, name="delete_feedback"),
+    path('payment/', payment, name="payment"),
+    path('main/', home, name="home"),
+    path('', main, name="main"),
+    path('contact/', contact, name="contact"),
+    path('about/', about, name="about"),
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
